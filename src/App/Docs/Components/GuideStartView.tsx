@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const GuideStartView: React.FC<Props> = ({ exitButton }) => {
-    const isMobile = window.innerWidth <= 767;
     const doc = document as any;
     const [isReady, updateReady] = useState(doc.fullscreenElement);
     const [isVisible, setIsVisible] = useState(true);
