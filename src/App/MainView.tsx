@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import skyrushub from '../assets/SkyrusHubFullWhite.png';
-import './Styled.mainView.css'
+import './Styled.mainView.css';
 
-export const MainView: React.FC = () => {
+interface MainViewProps {
+    initGame: boolean;
+    updateGameState: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+
+export const MainView: React.FC<MainViewProps> = ({ initGame, updateGameState }) => {
     const [glitchButtons, setGlitchButtons] = useState(false);
     const [glitchFull, setGlitchFull] = useState(false);
     const [isStarted, updateExp] = useState(false);
@@ -30,6 +35,15 @@ export const MainView: React.FC = () => {
             setCursorLocked(false);
             setGlitchButtons(false);
             setGlitchFull(false);
+        }, 5000);
+        
+        setTimeout(() => {
+            setGlitchFull(true);
+        }, 7000);
+
+        setTimeout(() => {
+            setGlitchFull(false);
+            updateGameState(true)
             updateShowMessage(false);
         }, 8000);
     }
@@ -51,7 +65,7 @@ export const MainView: React.FC = () => {
                 </div>
             </header>
             <div className="content">
-                <h1 className="typewriter-text">{showMessage ? "Coming Soon..." : "SEJA BEM VINDO A REAL EXPERIÊNCIA"}</h1>
+                <h1 className="typewriter-text">{ !showMessage ? "Coming Soon..." : "SEJA BEM VINDO A REAL EXPERIÊNCIA"}</h1>
                 <div className="bottomM">
                     <p className={`readyButton ${glitchButtons ? "glitch" : ""} ${cursorLocked ? "cursor-locked" : ""}`} onClick={() => hanndleClickrReady()}>Ready?</p>
                 </div>
