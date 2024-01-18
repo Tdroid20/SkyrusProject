@@ -8,6 +8,85 @@
     user-select: none;
 }
 
+.glassGlitch::before,
+.glassGlitch::after {
+    width: 100vw;
+    height: 100vh;
+    content: attr(data-text);
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: rgb(0, 255, 0);
+    /* Cor do glitch */
+    opacity: 0.1;
+    /* Opacidade para suavizar */
+    /* clip: rect(0, 900px, 0, 0); */
+    animation: glitch 0.5s infinite linear alternate-reverse;
+    z-index: 90000;
+    background: url("../assets/glitch.gif");
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #00f;
+    /* Cor do glitch */
+    opacity: 1.0;
+    /* Opacidade para suavizar */
+    animation: glitch 1s infinite linear alternate-reverse;
+    z-index: 1000;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: 1px 1px red;
+    /* Adicionando uma sombra suave */
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px -1px lime;
+    /* Adicionando uma sombra suave */
+}
+
+@keyframes glitch {
+    20%,
+    24%,
+    53%,
+    57%,
+    75%,
+    79%,
+    94%,
+    98% {
+        opacity: 0.8;
+    }
+
+    21%,
+    56%,
+    80%,
+    95% {
+        opacity: 1;
+    }
+
+    23%,
+    55%,
+    78% {
+        opacity: 0.1;
+    }
+
+    54%,
+    77% {
+        opacity: 0.1;
+    }
+
+    76% {
+        opacity: 0.8;
+    }
+}
+
 .Header {
     display: flex;
     flex-direction: row;
@@ -96,24 +175,37 @@
     display: none;
 }
 
+.readyButton:hover {
+    background-color: #FFF;
+    color: #000;
+    transition: background-color 1.0s,
+        color .2s;
+}
+
 @keyframes fadeIn {
     from {
-      opacity: 0;
-      transform: translateY(-10px);
+        opacity: 0;
+        transform: translateY(-10px);
     }
+
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  @keyframes fadeOut {
+}
+
+@keyframes fadeOut {
     from {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
+
     to {
-      opacity: 0;
-      transform: translateY(-10px);
+        opacity: 0;
+        transform: translateY(-10px);
     }
-  }
+}
+
+.cursor-locked {
+    cursor: progress !important;
+}
