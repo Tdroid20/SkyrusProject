@@ -17,6 +17,7 @@ export const MainView: React.FC = () => {
         setTimeout(() => {
             updateExp(true);
             updateShowMessage(true);
+            console.log(isStarted)
         }, 2666.67);
     }
 
