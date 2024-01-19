@@ -1,6 +1,7 @@
 import './App.css'
 import React, { useState } from "react";
 import { MainView } from './App/MainView'
+import { LauchGameComponent } from './App/Components/LauchGameComponent';
 
 const App: React.FC = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -8,7 +9,7 @@ const App: React.FC = () => {
   return (
     <div>
       { isStarted ? (
-        <h1>Alpha Version 0.0.7-Dev</h1>
+        <LauchGameComponent />
       ) : (
         <MainView initGame={isStarted} updateGameState={setIsStarted} />
       ) }

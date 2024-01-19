@@ -57,7 +57,7 @@ export const MainView: React.FC<MainViewProps> = ({ initGame, updateGameState })
       }, [cursorLocked]);
     return (
         <div className={`glass ${glitchFull ? "glassGlitch" : ""}`}>
-            <div className={`MainApp`}>
+            <div className={`MainApp ${initGame ? "Skyrushub" : ""}`}>
             <header className="Header">
                 <div className="hContainer">
                     <img src={skyrushub} width={"370px"} onDragStart={(e) => e.preventDefault()} />
