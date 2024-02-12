@@ -49,7 +49,7 @@ export const SearchSC: React.FC<Props> = ({ closeModal, isOpen, updateStatusApp,
                     });
 
                     console.log(result)
-                } else if(SValue === "devmode://restart:count") {
+                } else if(SValue === "devmode://restart:rpc" || "/restart") {
                     restartFunc()
                 } else if (SValue.startsWith("skynet://connect:rpc/")) {
                     let skynetAuth = prompt("parece que você está tentando acessar os serviçoes da skynet, qual o skylink deseja requisitar")

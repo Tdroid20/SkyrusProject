@@ -14,14 +14,15 @@ import {
 import { CopyrightContent } from "../Docs/Components/Styles/Styled.guideStartView";
 import Countdown, { zeroPad } from "react-countdown";
 import { MaintenanceComponent } from "./Maintence/MaintenanceView";
+import { StreamComponent } from "./Stream/streamPlace";
 
 export const LauchGameComponent: React.FC = () => {
-  let nextEvent = new Date("2024-02-12T21:47:24.851Z").getTime();
+  let nextEvent = new Date("2024-02-12T23:00:00.000Z").getTime();
   const [isOnline, setStatus] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [sharedStream, updateStream] = useState(false);
   const [showContainer, updateContainer] = useState(true);
-  const [showTexts, updateStatusText] = useState(false);
+  const [showTexts, updateStatusText] = useState(true);
   const [ animateBroadcast, updateAnimation ] = useState(false);
 
   function closeModal() {
@@ -35,18 +36,15 @@ export const LauchGameComponent: React.FC = () => {
     setTimeout(() => {
       updateStatusText(!showTexts);
     }, 1800);
-
-    setTimeout(() => {
-      endStream()
-    }, 15000);
   };
 
   function restartCount() {
+    updateContainer(true)
     updateStreamAndAnimation()
 
     setTimeout(() => {
       setStatus(true);
-      nextEvent = new Date().getTime() + 5000;
+      nextEvent = new Date("2024-02-12T23:00:00.000Z").getTime();
     }, 6000);
   }
 
@@ -54,8 +52,8 @@ export const LauchGameComponent: React.FC = () => {
     updateStreamAndAnimation()
 
     setTimeout(() => {
-    updateContainer(false)
-    }, 10000);
+      updateContainer(false)
+    }, 8000);
   }
   
 
@@ -141,9 +139,7 @@ export const LauchGameComponent: React.FC = () => {
                 )}
 
                 { sharedStream && (
-                  <>
-                    stream place
-                  </>
+                  <StreamComponent endStream={endStream} />
                 ) }
 
               </ContainerCountDown>

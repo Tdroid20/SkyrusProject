@@ -130,7 +130,7 @@ export const ContainerCountDown = styled.div<Props>`
 
   &.activeView {
     width: 100%;
-    height: 100%;
+    height: 95%;
     margin: 0;
   }
 `;
