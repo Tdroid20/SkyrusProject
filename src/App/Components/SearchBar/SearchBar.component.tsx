@@ -6,9 +6,10 @@ interface Props {
     closeModal: () => void;
     isOpen: boolean;
     updateStatusApp: Dispatch<SetStateAction<boolean>>;
+    restartFunc: () => void;
 }
 
-export const SearchSC: React.FC<Props> = ({ closeModal, isOpen, updateStatusApp }) => {
+export const SearchSC: React.FC<Props> = ({ closeModal, isOpen, updateStatusApp, restartFunc }) => {
     const [SValue, updateSValue] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,6 +49,8 @@ export const SearchSC: React.FC<Props> = ({ closeModal, isOpen, updateStatusApp 
                     });
 
                     console.log(result)
+                } else if(SValue === "devmode://restart:count") {
+                    restartFunc()
                 } else if (SValue.startsWith("skynet://connect:rpc/")) {
                     let skynetAuth = prompt("parece que você está tentando acessar os serviçoes da skynet, qual o skylink deseja requisitar")
 

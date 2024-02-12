@@ -34,9 +34,10 @@ interface Props {
     closeModal: () => void;
     isOpen: boolean;
     updateStatusApp: Dispatch<SetStateAction<boolean>>;
+    restartFunc: () => void;
 }
 
-export const MaintenanceComponent: React.FC<Props> = ({ isOpen, closeModal, updateStatusApp }) => {
+export const MaintenanceComponent: React.FC<Props> = ({ isOpen, closeModal, updateStatusApp, restartFunc }) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -46,7 +47,9 @@ export const MaintenanceComponent: React.FC<Props> = ({ isOpen, closeModal, upda
         >
             <SearchSC
                 closeModal={() => closeModal()}
-                isOpen={isOpen} updateStatusApp={updateStatusApp} />
+                isOpen={isOpen}
+                updateStatusApp={updateStatusApp}
+                restartFunc={restartFunc} />
         </Modal>
     )
 }

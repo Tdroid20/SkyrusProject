@@ -27,6 +27,10 @@ const glow = keyframes`
   }
 `;
 
+interface Props {
+  animateBroadcast: Boolean
+}
+
 export const GlassView = styled.div`
     width: 90vw;
     height: 80vh;
@@ -55,7 +59,7 @@ export const ContainerView = styled.div`
     width: 100%;
     height: 97%;
     display: flex;
-    flex-direction: colum;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
@@ -80,9 +84,14 @@ export const DescriptionText = styled.p`
     font-weight: bold;
     font-size: 14px;
     margin-bottom: -5px;
+    transition: opacity 2s ease-in-out;
+    
+    &.activeView {
+      opacity: 0;
+    }
 `;
 
-export const TitleText = styled.h1`
+export const TitleText = styled.h1<Props>`
     font-family: "Aero Matics Display", sans-serif;
     font-style: italic;
     font-weight: bold;
@@ -93,23 +102,37 @@ export const TitleText = styled.h1`
     justify-content: center;
     align-items: center;
     margin: 0;
+    transition: opacity 2s ease-in-out;
+    
+    &.activeView {
+      opacity: 0;
+    }
 `;
 
 export const Highlight = styled.span`
     color: #35ff00;
     flex-direction: row;
+
+    &.activeView {
+      display: none;
+    }
 `;
 
-export const ContainerCountDown = styled.div`
-    width: 50%;
-    height: 100px;
+export const ContainerCountDown = styled.div<Props>`
+  width: ${(props) => props.animateBroadcast ? '100%' : '70%'};
+  height: ${(props) => props.animateBroadcast ? '100%' : '100px'};;
+  background: #212121;
+  margin-top: 60px;
+  border-radius: 20px;
+  border-image-slice: 1;
+  animation: ${glow} 2s infinite ease-in;
+  transition: width 5s ease-in-out, height 4s ease-in-out;
 
-    background: #212121;
-    
-    margin-top: 60px;
-    border-radius: 20px; /* Borda transparente para espaço extra */
-    border-image-slice: 1;
-    animation: ${glow} 2s infinite ease-in;
+  &.activeView {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 `;
 
 export const CountdownValue = styled.p`
