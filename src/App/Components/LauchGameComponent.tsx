@@ -21,7 +21,7 @@ export const LauchGameComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [sharedStream, updateStream] = useState(false);
   const [showContainer, updateContainer] = useState(true);
-  const [showTexts, updateStatusText] = useState(true);
+  const [showTexts, updateStatusText] = useState(false);
   const [ animateBroadcast, updateAnimation ] = useState(false);
 
   function closeModal() {
