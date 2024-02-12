@@ -5,15 +5,15 @@ import './Styled.mainView.css';
 interface MainViewProps {
     initGame: boolean;
     updateGameState: React.Dispatch<React.SetStateAction<boolean>>;
-  }
+}
 
 export const MainView: React.FC<MainViewProps> = ({ initGame, updateGameState }) => {
     const [glitchButtons, setGlitchButtons] = useState(false);
     const [glitchFull, setGlitchFull] = useState(false);
     const [isStarted, updateExp] = useState(false);
-    const [showMessage, updateShowMessage] = useState(false)
+    const [showMessage, updateShowMessage] = useState(false);
     const [cursorLocked, setCursorLocked] = useState(false);
-    
+
     function initExp() {
         setTimeout(() => {
             setGlitchFull(true)
@@ -36,7 +36,7 @@ export const MainView: React.FC<MainViewProps> = ({ initGame, updateGameState })
             setGlitchButtons(false);
             setGlitchFull(false);
         }, 5000);
-        
+
         setTimeout(() => {
             setGlitchFull(true);
         }, 7000);
@@ -50,28 +50,28 @@ export const MainView: React.FC<MainViewProps> = ({ initGame, updateGameState })
 
     useEffect(() => {
         if (cursorLocked) {
-          document.body.classList.add('cursor-locked');
+            document.body.classList.add('cursor-locked');
         } else {
-          document.body.classList.remove('cursor-locked');
+            document.body.classList.remove('cursor-locked');
         }
-      }, [cursorLocked]);
+    }, [cursorLocked]);
     return (
         <div className={`glass ${glitchFull ? "glassGlitch" : ""}`}>
             <div className={`MainApp ${initGame ? "Skyrushub" : ""}`}>
-            <header className="Header">
-                <div className="hContainer">
-                    <img src={skyrushub} width={"370px"} onDragStart={(e) => e.preventDefault()} />
-                    <p className="NotifyButton">Notify me</p>
+                <header className="Header">
+                    <div className="hContainer">
+                        <img src={skyrushub} width={"370px"} onDragStart={(e) => e.preventDefault()} />
+                        <p className="NotifyButton">Notify me</p>
+                    </div>
+                </header>
+                <div className="content">
+                    <h1 className="typewriter-text">{!showMessage ? "Coming Soon..." : "SEJA BEM VINDO A REAL EXPERIÊNCIA"}</h1>
+                    <div className="bottomM">
+                        <p className={`readyButton ${glitchButtons ? "glitch" : ""} ${cursorLocked ? "cursor-locked" : ""}`} onClick={() => hanndleClickrReady()}>Ready?</p>
+                    </div>
+                    <p className="copyright">Copyright © 2023 - 2024, SkyrusHub LTDA. Todos os direitos reservados.</p>
                 </div>
-            </header>
-            <div className="content">
-                <h1 className="typewriter-text">{ !showMessage ? "Coming Soon..." : "SEJA BEM VINDO A REAL EXPERIÊNCIA"}</h1>
-                <div className="bottomM">
-                    <p className={`readyButton ${glitchButtons ? "glitch" : ""} ${cursorLocked ? "cursor-locked" : ""}`} onClick={() => hanndleClickrReady()}>Ready?</p>
-                </div>
-                      <p className="copyright">Copyright © 2023 - 2024, SkyrusHub LTDA. Todos os direitos reservados.</p>
             </div>
-        </div>
         </div>
     )
 }
